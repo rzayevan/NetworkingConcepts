@@ -9,15 +9,15 @@ NOTE: To run the proxy, some modifications will have to be made to your browser.
 
 == To configure the browser:
 
-* Open the browser and navigate to General > Network Proxy > Settings and select Manual proxy configuration
-* Specify the HTTP proxy address to be 127.0.0.1 and the port number to be 8080
+* Open the browser and navigate to `General > Network Proxy > Settings` and select `Manual proxy configuration`
+* Specify the HTTP proxy address to be `127.0.0.1` and the port number to be `8080`
 * Use Incognito mode to avoid storing cache, since it makes the webpage load a lot faster	
 
 
 == To compile sloxy.c:
 
 * Open up the terminal and locate to the directory the file is in
-* Compile using the command "gcc sloxy.c"
-* Run the program using the command "./a.out 8080" or "./a.out"
-* To terminate the program, use Ctrl+C
+* Compile using the command `gcc sloxy.c`
+* Run the program using the command `./a.out 8080` or `./a.out`
+* To terminate the program, use `Ctrl + C`
 
