@@ -7,14 +7,14 @@ All the required features are working and have been tested on Firefox on 64-bit 
 NOTE: To run the proxy, some modifications will have to be made to your browser. The proxy is listening on port 8080. 
 
 
-==To configure the browser, do the following:
+== To configure the browser, do the following:
 
 . Open the browser and navigate to General > Network Proxy > Settings and select Manual proxy configuration
 . Specify the HTTP proxy address to be 127.0.0.1 and the port number to be 8080
 . Use Incognito mode to avoid storing cache, since it makes the webpage load a lot faster	
 
 
-==To compile sloxy.c, do the following:
+== To compile sloxy.c, do the following:
 
 . Open up the terminal and locate to the directory the file is in
 . Compile using the command "gcc sloxy.c"
