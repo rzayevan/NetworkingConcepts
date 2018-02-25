@@ -1,0 +1,23 @@
+= Proxy Configuration 
+
+The proxy is required to accept requests from client's web browser, determine what type of the content is being sent by doing some parsing of data, and slow down the webpage loading for the client in case the received request is HTML.
+
+All the required features are working and have been tested on Firefox on 64-bit Fedora 26 distribution of Linux and Mac OS X 10.2. The tests have been run on Computer Science desktop computers at the University of Calgary and on my own personal devices. The test cases posted on the CPSC441 homepage have been used to test the features.
+
+NOTE: To run the proxy, some modifications will have to be made to your browser. The proxy is listening on port 8080. 
+
+
+==To configure the browser, do the following:
+
+. Open the browser and navigate to General > Network Proxy > Settings and select Manual proxy configuration
+. Specify the HTTP proxy address to be 127.0.0.1 and the port number to be 8080
+. Use Incognito mode to avoid storing cache, since it makes the webpage load a lot faster	
+
+
+==To compile sloxy.c, do the following:
+
+. Open up the terminal and locate to the directory the file is in
+. Compile using the command "gcc sloxy.c"
+. Run the program using the command "./a.out 8080" or "./a.out"
+. To terminate the program, use Ctrl+C
+
