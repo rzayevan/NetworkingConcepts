@@ -1,8 +1,8 @@
 /*
  * Sloxy.c
  *  This program is a slow HTTP proxy which receives the HTTP Requests from the web browser
- *  and forward it to the desired web server in chunks. After receiving the response from the web server
- *  it, it requests for the next range of bytes. At the end, it forwards the full requested message it to the web browser of the client.
+ *  and forwards it to the desired web server in chunks. After receiving the response from the web server,
+ *  it requests for the next range of bytes. At the end, it forwards the full requested message back to the web browser of the client.
  *  Some of the code has been obtainied from http://pages.cpsc.ucalgary.ca/~carey/CPSC441/tutorials/proxy.c.txt
  *  The proxy listens on port 8080
  *  Created on: Jan 26, 2018
@@ -146,12 +146,12 @@ int main() {
 
 
 		/* Checking the PATH for HTML file*/
-    bool isHTML = false;
-    if(strstr(PATH, ".html") != NULL){
-      isHTML = true;
-      printf("\n++++++++++++++ HTML File Detected! Sloxy going into action . . . +++++++++++++++++++\n");
-    } else{
-			printf("\n+++++++++++++++++++ Not an HTML file! Sloxy deactivated . . . +++++++++++++++++++++++\n");
+        bool isHTML = false;
+        if(strstr(PATH, ".html") != NULL){
+            isHTML = true;
+            printf("\n++++++++++++++ HTML File Detected! Sloxy going into action . . . +++++++++++++++++++\n");
+        } else{
+		    printf("\n+++++++++++++++++++ Not an HTML file! Sloxy deactivated . . . +++++++++++++++++++++++\n");
 		}
 
 		/* Creating the TCP socket for connecting to the desired web server */
