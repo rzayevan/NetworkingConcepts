@@ -317,76 +317,78 @@ int main() {
 
 		int info_socket;
 
-		/* If request is HTML, this statement gets executed */
-		if(isHTML && acceptRanges && isValidCode){
-			while(low <=content_length){
-				sprintf(lowStr, "%d", low);
-				sprintf(contStr, "%d", content_length);
-				sprintf(highStr, "%d", high);
-				strcpy(rangeReq, rangeMsg);
-				strcat(rangeReq, "Range: bytes=");
-				strcat(rangeReq, lowStr);
-				strcat(rangeReq, "-");
-				strcat(rangeReq, highStr);
-				strcat(rangeReq, terminator);
-				low = low + send_range;
-				if ((high + send_range ) > content_length){
-					high = content_length;
-				} else{
-					high = high + send_range;
-				}
-				// Creating the socket
-			  info_socket = socket(AF_INET, SOCK_STREAM, 0);
-				if (info_socket < 0) {
-				printf(
-						"Error in socket() call for creating --proxy-WebServer-- socket.\n");
-				} else {
-				printf("\n");
-				printf("<<<<< --proxy-WebServer-- socket creation: done >>>>>\n");
-				printf("\n");
-				}
+/* If request is HTML, this statement gets executed */
+if(isHTML && acceptRanges && isValidCode){
+	while(low <=content_length){
 
-				// Connecting to the web server's socket
-				int connect2_status;
-				connect2_status = connect(info_socket, (struct sockaddr *) &server_address,
-					sizeof(server_address));
-				if (connect2_status < 0) {
-				printf(
-						"Error in connect() call for connecting to the web server's socket.\n");
-				exit(-1);
-				} else {
-				printf("\nWeb server's socket connection establishment: done\n ");
-				}
+			sprintf(lowStr, "%d", low);
+			sprintf(contStr, "%d", content_length);
+			sprintf(highStr, "%d", high);
+			strcpy(rangeReq, rangeMsg);
+			strcat(rangeReq, "Range: bytes=");
+			strcat(rangeReq, lowStr);
+			strcat(rangeReq, "-");
+			strcat(rangeReq, highStr);
+			strcat(rangeReq, terminator);
+			low = low + send_range;
+			if ((high + send_range ) > content_length){
+				high = content_length;
+			} else{
+				high = high + send_range;
+			}
 
-				/* Sending the HTTP request of the client to the web server*/
-				int web_send_status;
-				printf("-> Message being sent to server (rangeReq): \n%s\n", rangeReq);
-				web_send_status = send(info_socket, rangeReq, sizeof(rangeReq),0);
+		// Creating the socket
+	  info_socket = socket(AF_INET, SOCK_STREAM, 0);
+		if (info_socket < 0) {
+		printf(
+				"Error in socket() call for creating --proxy-WebServer-- socket.\n");
+		} else {
+		printf("\n");
+		printf("<<<<< --proxy-WebServer-- socket creation: done >>>>>\n");
+		printf("\n");
+		}
 
-				if (web_send_status < 0) {
-					printf(
-							" Error in send() call for sending HTTP request to the web server.\n ");
-					exit(-1);
-				} else {
-					printf("\n");
-					printf("<<<<< Sending HTTP request to the server: done >>>>>\n");
-					printf("\n");
-				}
+		// Connecting to the web server's socket
+		int connect2_status;
+		connect2_status = connect(info_socket, (struct sockaddr *) &server_address,
+			sizeof(server_address));
+		if (connect2_status < 0) {
+		printf(
+				"Error in connect() call for connecting to the web server's socket.\n");
+		exit(-1);
+		} else {
+		printf("\nWeb server's socket connection establishment: done\n ");
+		}
 
-				/* Receiving the HTTP response from the web server*/
-				int web_recv_status;
-				web_recv_status = recv(info_socket, req_message_in, sizeof(req_message_in), 0);
-				if (web_recv_status < 0) {
-					printf(
-							" Error in recv() call for receiving web server's HTTP response.\n ");
-					exit(-1);
-				} else {
-					printf("\n");
-					printf("<<<<< Receiving web server's HTTP response: done >>>>>\n");
-					printf("-> Recieved message from server is: \n%s\n ", req_message_in);
-					printf("\n");
-				}
-		 }
+		/* Sending the HTTP request of the client to the web server*/
+		int web_send_status;
+		printf("-> Message being sent to server (rangeReq): \n%s\n", rangeReq);
+		web_send_status = send(info_socket, rangeReq, sizeof(rangeReq),0);
+
+		if (web_send_status < 0) {
+			printf(
+					" Error in send() call for sending HTTP request to the web server.\n ");
+			exit(-1);
+		} else {
+			printf("\n");
+			printf("<<<<< Sending HTTP request to the server: done >>>>>\n");
+			printf("\n");
+		}
+
+		/* Receiving the HTTP response from the web server*/
+		int web_recv_status;
+		web_recv_status = recv(info_socket, req_message_in, sizeof(req_message_in), 0);
+		if (web_recv_status < 0) {
+			printf(
+					" Error in recv() call for receiving web server's HTTP response.\n ");
+			exit(-1);
+		} else {
+			printf("\n");
+			printf("<<<<< Receiving web server's HTTP response: done >>>>>\n");
+			printf("-> Recieved message from server is: \n%s\n ", req_message_in);
+			printf("\n");
+		}
+	}
 
 } else {	/* if file is not HTML, goes here */
 	// Creating the socket
